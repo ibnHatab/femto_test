@@ -1,18 +1,20 @@
 
+REBAR=./rebar
+
 .PHONY: deps rel
 
 compile:deps
-	rebar compile
+	$(REBAR) compile
 
 rel: compile
-	rebar generate
+	$(REBAR) generate
 
 deps:
-	rebar get-deps;	rebar update-deps
+	$(REBAR) get-deps
 
 clean:
-	rebar clean
-	rebar delete-deps
+	$(REBAR) clean
+	$(REBAR) delete-deps
 	rm -rf deps/distel
 
 distel:
