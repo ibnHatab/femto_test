@@ -1,0 +1,20 @@
+
+
+
+
+* Prepare testing environment
+  [[http://bc.tech.coop/blog/070613.html][Test Libraries for Erlang]]
+  SCHEDULED: <2012-06-22 Fri>
+
+** Erlang/OTP test server
+   This is what OTP uses, and they have several thousand test cases
+   written for OTP. It's used by several large commercial projects. It
+   has support for multi-target testing, and automated testing of
+   embedded systems.
+
+** eUnit
+   This is for simpler unit testing, and can surely be combined with
+   the Test Server.
+
+** Erlang QuickCheck (ErProp)
+
