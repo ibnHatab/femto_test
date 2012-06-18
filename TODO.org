@@ -1,9 +1,9 @@
 
 
-* TR069 prototype requirement
+* TR069 prototype requirement (feature)
   The assumption is we will have Netconf confd and most likely SNMP confd.
 
-** Here is what I would expect:
+** Here is what I would expect: (stories)
    1. Install TR069 stack [0/3]
       - [ ] For now open source is fine..
       - [ ] Later we will have to think commercial
