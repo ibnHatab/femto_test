@@ -1,8 +1,40 @@
 
 
+* TR069 prototype requirement
+  The assumption is we will have Netconf confd and most likely SNMP confd.
+
+** Here is what I would expect:
+   1. Install TR069 stack [0/3]
+      - [ ] For now open source is fine..
+      - [ ] Later we will have to think commercial
+      - [ ] and implication
+
+   2. TR069 protocol and interface with HDM. [0/5]
+      - [ ] SetParameterValues
+      - [ ] GetParameterValues
+      - [ ] Download
+      - [ ] Periodic Inform
+      - [ ] Inform
+
+   3. Validate registration (TR-106 oarameters etc)
+
+   4. Validate alarms raised (OAM-C) can be mapped to TR069 informs.
+
+   5. Validate a set parameter via TR069 can be written to confd.
+
+   6. Validate a get parameter request can read something from confD.
+
+ 
+** In second round we can try:
+   1. sftp of bulk CM based on URL sent by HDM. [0/1]
+      - [ ] TransferComplete
+   2. Alarm sync, data sync
+ 
+   Does this align with your views?
+ 
 
 
-* Prepare testing environment
+* Prepare build and testing environment
   [[http://bc.tech.coop/blog/070613.html][Test Libraries for Erlang]]
   SCHEDULED: <2012-06-22 Fri>
 
@@ -15,6 +47,11 @@
 ** eUnit
    This is for simpler unit testing, and can surely be combined with
    the Test Server.
+   
+   - bluefringe HowTo
 
 ** Erlang QuickCheck (ErProp)
+** Cover
+** Dializer
 
+** jungerl/erlang_automated_build or buildboat 
