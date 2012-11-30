@@ -1,0 +1,3 @@
+node_name_file='/etc/erlrc.d/nodes/erlang'
+ 
+run_extra_args='+A 64 -noshell -noinput -s crypto -s mnesia -eval "case erlrc_boot:boot () of ok -> ok; _ -> init:stop () end" >erlang.out 2>erlang.err &'
