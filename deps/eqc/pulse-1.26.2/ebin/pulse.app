@@ -1,0 +1,10 @@
+{application,pulse,
+             [{mod,{pulse,[]}},
+              {vsn,"1.26.2"},
+              {modules,[pulse,pulse_sup,pulse_event,pulse_event_terminal,
+                        pulse_event_graph,pulse_instrument]},
+              {description,"ProTest User Level Scheduler for Erlang"},
+              {registered,[pulse,pulse_sup,pulse_event]},
+              {applications,[kernel,stdlib]},
+              {env,[{run_timeout,30000}]},
+              {mod,{pulse,[]}}]}.

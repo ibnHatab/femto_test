@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Module eqc_mcerlang_statem</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module eqc_mcerlang_statem</h1>
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>McErlang integration for Quviq QuickCheck.
+
+<p><b>Version:</b> 1.26.2</p>
+
+<h2><a name="description">Description</a></h2><p>McErlang integration for Quviq QuickCheck</p>
+  
+   <p>Copyright Quviq AB, 2010</p>
+  
+   <p>The module contains a McErlang-compiled (simplified) version of
+   <tt>eqc_statem</tt>. Whenever, for example, <tt>run_commands</tt>
+   is called within the <tt>?MCERLANG</tt>-macro, it is automatically
+   (by the parse transform <a href="eqc_mce_prop_transform.html"><code>eqc_mce_prop_transform</code></a>) replaced
+   by <tt>eqc_mcerlang_statem:run_commands</tt> that is instrumented   
+for McErlang.</p>
+  
+   Since most aspects of using McErlang together with Quviq
+   QuickCheck are automatic, there should be little need to actually
+   use the functions in this module.
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#compiled-0">compiled/0</a></td><td></td></tr>
+<tr><td valign="top"><a href="#run_commands-2">run_commands/2</a></td><td>Runs a list of commands specified by the abstract state machine
+ in client module <tt>Mod</tt>.</td></tr>
+<tr><td valign="top"><a href="#run_commands-3">run_commands/3</a></td><td>Behaves like <a href="#run_commands-2"><code>run_commands/2</code></a>, but also takes an environment
+ containing values for additional variables that may be referred
+ to in test cases.</td></tr>
+<tr><td valign="top"><a href="#run_parallel_commands-2">run_parallel_commands/2</a></td><td>Runs a parallel test case, and returns the history of the
+  prefix, each of the parallel tasks, and the overall result.</td></tr>
+<tr><td valign="top"><a href="#run_parallel_commands-3">run_parallel_commands/3</a></td><td>Like <a href="#run_commands-2"><code>run_commands/2</code></a>, but also takes an
+  environment binding variables, like <a href="#run_commands-3"><code>run_commands/3</code></a>.</td></tr>
+<tr><td valign="top"><a href="#run_parallel_commands-7">run_parallel_commands/7</a></td><td></td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="compiled-0">compiled/0</a></h3>
+<div class="spec">
+<p><tt>compiled() -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="run_commands-2">run_commands/2</a></h3>
+<div class="spec">
+<p><tt>run_commands(Mod::atom(), Cmds::list(<a href="#type-command">command()</a>)) -&gt; {<a href="#type-history">history()</a>, <a href="#type-dynamic_state">dynamic_state()</a>, <a href="#type-reason">reason()</a>}</tt></p>
+</div><p>Runs a list of commands specified by the abstract state machine
+ in client module <tt>Mod</tt>. Before each command is run, its precondition is
+ checked by Mod:precondition/2, and after each command is executed, its
+ postcondition is checked by Mod:postcondition/3. The result contains the
+ <a href="#type-history"><code>history()</code></a> of execution, the state after the last command that was
+ executed successfully, and the <a href="#type-reason"><code>reason()</code></a> execution stopped.</p>
+
+<h3 class="function"><a name="run_commands-3">run_commands/3</a></h3>
+<div class="spec">
+<p><tt>run_commands(Mod::atom(), Cmds::list(<a href="#type-command">command()</a>), Env::list({atom(), term()})) -&gt; {<a href="#type-history">history()</a>, <a href="#type-dynamic_state">dynamic_state()</a>, <a href="#type-reason">reason()</a>}</tt></p>
+</div><p>Behaves like <a href="#run_commands-2"><code>run_commands/2</code></a>, but also takes an environment
+ containing values for additional variables that may be referred
+ to in test cases. For example, if <tt>Env</tt> is <tt>[{x,32}]</tt>,
+ then <tt>{var,x}</tt> may appear in the commands, and will evaluate
+ to 32. The variables names must be atoms (unlike generated variable
+ names, which are numbers).</p>
+
+<h3 class="function"><a name="run_parallel_commands-2">run_parallel_commands/2</a></h3>
+<div class="spec">
+<p><tt>run_parallel_commands(Mod::atom(), ParCmds::<a href="#type-parallel_test_case">parallel_test_case()</a>) -&gt; {<a href="#type-command_history">command_history()</a>, list(<a href="#type-command_history">command_history()</a>), <a href="#type-reason">reason()</a>}</tt></p>
+</div><p>Runs a parallel test case, and returns the history of the
+  prefix, each of the parallel tasks, and the overall result.</p>
+
+<h3 class="function"><a name="run_parallel_commands-3">run_parallel_commands/3</a></h3>
+<div class="spec">
+<p><tt>run_parallel_commands(Mod::atom(), ParCmds::<a href="#type-parallel_test_case">parallel_test_case()</a>, Env::list({atom(), term()})) -&gt; {<a href="#type-command_history">command_history()</a>, list(<a href="#type-command_history">command_history()</a>), <a href="#type-reason">reason()</a>}</tt></p>
+</div><p>Like <a href="#run_commands-2"><code>run_commands/2</code></a>, but also takes an
+  environment binding variables, like <a href="#run_commands-3"><code>run_commands/3</code></a>.</p>
+
+<h3 class="function"><a name="run_parallel_commands-7">run_parallel_commands/7</a></h3>
+<div class="spec">
+<p><tt>run_parallel_commands(Mod, Prefix, Procs, E, HPref, SPref, Res) -&gt; any()</tt></p>
+</div>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc, Jun 20 2012, 10:22:56.</i></p>
+</body>
+</html>
