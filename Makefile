@@ -17,14 +17,14 @@ clean:
 	$(REBAR) delete-deps
 
 distclean: clean
-	rm -rf deps/distel
-	rm -rf deps/eunitv_viz
+	-rm -rf deps/distel
+	-rm -rf deps/eunit_viz
 
 distel:
 	-git clone "https://github.com/massemanet/distel.git" deps/distel
 	make -C deps/distel
 
 eunit_viz:
-	-git clone "https://github.com/ThomasArts/Visualizing-EUnit-tests.git" deps/eunitv_viz
-	cd deps/eunitv_viz/ebin; erl -make
+	-git clone "https://github.com/ThomasArts/Visualizing-EUnit-tests.git" deps/eunit_viz
+	cd deps/eunit_viz/ebin; erl -make
 
