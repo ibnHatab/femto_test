@@ -1,8 +1,0 @@
-ebin/
-*~
-.eunit/
-*beam
-
-logs/*
-
-test.spec
