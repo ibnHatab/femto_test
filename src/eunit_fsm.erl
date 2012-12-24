@@ -8,7 +8,6 @@
 
 -define(Expr(E),??E).
 
-
 get_status(Pid, Which) ->
     {status, Pid, _Mod, List} = sys:get_status(Pid),
     AllData = lists:flatten([ X || {data, X} <- lists:last(List)]),

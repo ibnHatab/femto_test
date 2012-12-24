@@ -25,6 +25,5 @@ distel:
 	make -C deps/distel
 
 eunit_viz:
-	-git clone "https://github.com/ThomasArts/Visualizing-EUnit-tests.git" deps/eunit_viz
+	-git clone "https://github.com/ibnHatab/Visualizing-EUnit-tests.git" deps/eunit_viz
 	cd deps/eunit_viz/ebin; erl -make
-
